@@ -1,787 +1,1306 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-<title>notepad</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suruh Kito Bengkulu — Ada Kerjaan? Suruh Kito Bae</title>
+  <meta name="description" content="Layanan serba bisa di seluruh Bengkulu: bersih-bersih, pindahan, pasang & rakit, sopir, bantuan acara, hingga teman pendamping. WA aktif 24 jam & bisa nego harga." />
+  
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --navy: #0B2B64;
+      --navy-dark: #071D46;
+      --navy-light: #15408D;
+      --gold: #FBC02D;
+      --gold-hover: #F5A623;
+      --gold-soft: #FFF8E1;
+      --bg: #F8FAFC;
+      --surface: #FFFFFF;
+      --text-main: #0F172A;
+      --text-muted: #475569;
+      --border: #E2E8F0;
+      --wa-green: #25D366;
+      --wa-dark: #1DA851;
+      --radius: 16px;
+      --shadow: 0 4px 20px rgba(11, 43, 100, 0.06);
+      --shadow-hover: 0 12px 28px rgba(11, 43, 100, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--navy);
+    }
+
+    .brand-logo {
+      background: var(--navy);
+      color: var(--gold);
+      font-weight: 800;
+      font-size: 1.1rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      letter-spacing: -1px;
+    }
+
+    .brand span.sub {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      line-height: 1;
+    }
+
+    .nav-links {
+      display: none;
+      gap: 28px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--navy);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--navy-dark);
+    }
+
+    .btn-gold:hover {
+      background: var(--gold-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-navy {
+      background: var(--navy);
+      color: #FFFFFF;
+    }
+
+    .btn-navy:hover {
+      background: var(--navy-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline-white {
+      background: rgba(255, 255, 255, 0.1);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+    }
+
+    .btn-outline-white:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .btn-wa {
+      background: var(--wa-green);
+      color: #FFFFFF;
+    }
+
+    .btn-wa:hover {
+      background: var(--wa-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-sm {
+      padding: 9px 14px;
+      font-size: 0.85rem;
+      border-radius: 10px;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, var(--navy-light) 100%);
+      color: #FFFFFF;
+      padding: 64px 0 76px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(251, 192, 45, 0.16) 0%, rgba(251, 192, 45, 0) 70%);
+      top: -120px;
+      right: -80px;
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 36px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(251, 192, 45, 0.15);
+      color: var(--gold);
+      border: 1px solid rgba(251, 192, 45, 0.35);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.1rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 span {
+      color: var(--gold);
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.86);
+      max-width: 580px;
+      margin-bottom: 28px;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .hero-trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 0.86rem;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .hero-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-trust-item i {
+      color: var(--gold);
+      width: 17px;
+      height: 17px;
+    }
+
+    .hero-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 24px;
+    }
+
+    .hero-card-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--gold);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .quick-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      font-size: 0.92rem;
+    }
+
+    .quick-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .quick-list i {
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: 2px;
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Section Header */
+    section {
+      padding: 68px 0;
+    }
+
+    .section-head {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 36px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      color: var(--navy);
+      background: var(--gold-soft);
+      border: 1px solid #FDE68A;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 5px 12px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.25rem);
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-head p {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    /* Search & Filter */
+    .filter-bar {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .search-box {
+      position: relative;
+      max-width: 480px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .search-box i {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      width: 19px;
+      height: 19px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 14px 16px 14px 46px;
+      border-radius: 14px;
+      border: 1.5px solid var(--border);
+      background: var(--surface);
+      font-family: inherit;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-box input:focus {
+      border-color: var(--navy);
+    }
+
+    .category-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .pill {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .pill:hover {
+      border-color: var(--navy);
+      color: var(--navy);
+    }
+
+    .pill.active {
+      background: var(--navy);
+      color: #FFFFFF;
+      border-color: var(--navy);
+    }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 20px;
+    }
+
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      transition: all 0.22s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      border-color: #CBD5E1;
+    }
+
+    .service-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .service-num {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--navy);
+      background: var(--gold);
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .service-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: #EFF6FF;
+      color: var(--navy);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .service-card h3 {
+      font-size: 1.04rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+
+    .service-list {
+      list-style: none;
+      margin-bottom: 18px;
+      flex-grow: 1;
+      display: grid;
+      gap: 6px;
+    }
+
+    .service-list li {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .service-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--gold-hover);
+      font-weight: 900;
+    }
+
+    .service-note {
+      font-size: 0.78rem;
+      background: var(--gold-soft);
+      color: #92400E;
+      padding: 8px 10px;
+      border-radius: 8px;
+      margin-bottom: 14px;
+      line-height: 1.4;
+    }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 40px 20px;
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px dashed #CBD5E1;
+    }
+
+    /* Steps Section */
+    .steps-section {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .step-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      text-align: center;
+    }
+
+    .step-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: var(--navy);
+      color: var(--gold);
+      font-weight: 800;
+      font-size: 1.15rem;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 14px;
+    }
+
+    .step-card h3 {
+      font-size: 1rem;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .step-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    /* Why Us & Order Form */
+    .split-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .why-card, .order-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .why-list {
+      list-style: none;
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .why-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .why-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: var(--gold-soft);
+      color: var(--navy);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .why-list strong {
+      display: block;
+      font-size: 0.96rem;
+      color: var(--navy);
+    }
+
+    .why-list span {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    .nego-banner {
+      margin-top: 22px;
+      background: var(--navy);
+      color: #FFFFFF;
+      border-radius: 14px;
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .nego-banner i {
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .nego-banner strong {
+      color: var(--gold);
+      display: block;
+      font-size: 0.96rem;
+    }
+
+    .nego-banner p {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    /* Form */
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 0.94rem;
+      outline: none;
+      background: var(--bg);
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .form-control:focus {
+      border-color: var(--navy);
+      background: #FFFFFF;
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 92px;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--navy-dark);
+      color: rgba(255, 255, 255, 0.82);
+      padding: 44px 0 28px;
+    }
+
+    .footer-top {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      justify-content: space-between;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .footer-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .footer-badge {
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--gold);
+    }
+
+    .footer-bottom {
+      padding-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.84rem;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    /* Floating WA */
+    .floating-wa {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      z-index: 99;
+      background: var(--wa-green);
+      color: #FFFFFF;
+      padding: 13px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.38);
+      transition: transform 0.2s;
+    }
+
+    .floating-wa:hover {
+      transform: scale(1.04);
+      background: var(--wa-dark);
+    }
+
+    @media (min-width: 860px) {
+      .nav-links {
+        display: flex;
+      }
+      .hero-grid {
+        grid-template-columns: 1.25fr 0.9fr;
+      }
+      .split-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .footer-top {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+  </style>
 </head>
-<style type="text/css">
-ol,ul{
-display:block;
-list-style-type:none;
-margin:3px;
-}
-</style><body>
-<div>&lt;!DOCTYPE html&gt;<br>
-&lt;html lang="id"&gt;<br>
-&lt;head&gt;<br>
-&nbsp; &lt;meta charset="UTF-8" /&gt;<br>
-&nbsp; &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;<br>
-&nbsp; &lt;title&gt;Suruh Kito Bengkulu &#8212; Ada Kerjaan? Suruh Kito Bae&lt;/title&gt;<br>
-&nbsp; &lt;meta name="description" content="Layanan serba bisa di seluruh Bengkulu: bersih-bersih, pindahan, pasang &amp; rakit, sopir, bantuan acara, hingga teman pendamping. WA aktif 24 jam &amp; bisa nego harga." /&gt;<br>
-&nbsp; <br>
-&nbsp; &lt;!-- Google Fonts: Inter --&gt;<br>
-&nbsp; &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;<br>
-&nbsp; &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;<br>
-&nbsp; &lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"&gt;<br>
-&nbsp; <br>
-&nbsp; &lt;!-- Lucide Icons --&gt;<br>
-&nbsp; &lt;script src="https://unpkg.com/lucide@latest"&gt;&lt;/script&gt;<br>
-<br>
-&nbsp; &lt;style&gt;<br>
-&nbsp;&nbsp;&nbsp; :root {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --navy: #0B2B64;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --navy-dark: #071D46;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --navy-light: #15408D;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --gold: #FBC02D;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --gold-hover: #F5A623;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --gold-soft: #FFF8E1;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --bg: #F8FAFC;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --surface: #FFFFFF;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --text-main: #0F172A;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --text-muted: #475569;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --border: #E2E8F0;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --wa-green: #25D366;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --wa-dark: #1DA851;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --radius: 16px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --shadow: 0 4px 20px rgba(11, 43, 100, 0.06);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --shadow-hover: 0 12px 28px rgba(11, 43, 100, 0.12);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; * {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; box-sizing: border-box;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin: 0;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 0;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; html {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; scroll-behavior: smooth;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; body {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background-color: var(--bg);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--text-main);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; line-height: 1.6;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -webkit-font-smoothing: antialiased;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; a {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; text-decoration: none;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: inherit;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .container {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 100%;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; max-width: 1160px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin: 0 auto;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 0 20px;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; /* Navbar */<br>
-&nbsp;&nbsp;&nbsp; .navbar {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; position: sticky;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; top: 0;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; z-index: 100;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: rgba(255, 255, 255, 0.94);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; backdrop-filter: blur(10px);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-bottom: 1px solid var(--border);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .nav-inner {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; align-items: center;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; justify-content: space-between;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 70px;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .brand {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; align-items: center;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 10px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 800;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 1.15rem;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--navy);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .brand-logo {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--navy);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--gold);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 800;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 1.1rem;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 40px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 40px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 10px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: grid;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; place-items: center;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; letter-spacing: -1px;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .brand span.sub {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: block;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.72rem;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 500;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--text-muted);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; line-height: 1;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .nav-links {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: none;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 28px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 600;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.92rem;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--text-muted);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .nav-links a:hover {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--navy);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .btn {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: inline-flex;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; align-items: center;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; justify-content: center;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 8px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 12px 20px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 12px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 700;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.95rem;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cursor: pointer;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: none;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transition: all 0.2s ease;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .btn-gold {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--gold);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--navy-dark);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .btn-gold:hover {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--gold-hover);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transform: translateY(-1px);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .btn-navy {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--navy);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: #FFFFFF;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .btn-navy:hover {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--navy-light);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transform: translateY(-1px);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .btn-outline-white {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: rgba(255, 255, 255, 0.1);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: #FFFFFF;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: 1px solid rgba(255, 255, 255, 0.28);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .btn-outline-white:hover {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: rgba(255, 255, 255, 0.18);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .btn-wa {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--wa-green);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: #FFFFFF;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .btn-wa:hover {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--wa-dark);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transform: translateY(-1px);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .btn-sm {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 9px 14px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.85rem;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 10px;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; /* Hero */<br>
-&nbsp;&nbsp;&nbsp; .hero {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, var(--navy-light) 100%);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: #FFFFFF;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 64px 0 76px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; position: relative;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; overflow: hidden;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .hero::after {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; content: "";<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; position: absolute;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 420px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 420px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: radial-gradient(circle, rgba(251, 192, 45, 0.16) 0%, rgba(251, 192, 45, 0) 70%);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; top: -120px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; right: -80px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pointer-events: none;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .hero-grid {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: grid;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; grid-template-columns: 1fr;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 36px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; align-items: center;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; position: relative;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; z-index: 2;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .badge-pill {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: inline-flex;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; align-items: center;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 8px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: rgba(251, 192, 45, 0.15);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--gold);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: 1px solid rgba(251, 192, 45, 0.35);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 6px 14px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 999px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.82rem;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 700;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 18px;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .hero h1 {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: clamp(2rem, 5vw, 3.1rem);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 800;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; line-height: 1.15;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 16px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; letter-spacing: -0.02em;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .hero h1 span {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--gold);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .hero p {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 1.05rem;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: rgba(255, 255, 255, 0.86);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; max-width: 580px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 28px;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .hero-cta {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flex-wrap: wrap;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 12px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 28px;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .hero-trust {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flex-wrap: wrap;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 18px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.86rem;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: rgba(255, 255, 255, 0.85);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .hero-trust-item {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; align-items: center;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 6px;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .hero-trust-item i {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--gold);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 17px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 17px;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .hero-card {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: rgba(255, 255, 255, 0.08);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: 1px solid rgba(255, 255, 255, 0.16);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; backdrop-filter: blur(10px);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 20px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 24px;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .hero-card-title {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 700;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 1.05rem;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--gold);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 12px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; align-items: center;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 8px;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .quick-list {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list-style: none;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: grid;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 10px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.92rem;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .quick-list li {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; align-items: flex-start;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 10px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: rgba(255, 255, 255, 0.92);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .quick-list i {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--gold);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flex-shrink: 0;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-top: 2px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 18px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 18px;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; /* Section Header */<br>
-&nbsp;&nbsp;&nbsp; section {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 68px 0;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .section-head {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; text-align: center;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; max-width: 680px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin: 0 auto 36px;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .section-tag {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: inline-block;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--navy);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--gold-soft);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: 1px solid #FDE68A;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.78rem;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 700;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; text-transform: uppercase;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; letter-spacing: 0.06em;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 5px 12px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 999px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 10px;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .section-head h2 {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: clamp(1.6rem, 3.5vw, 2.25rem);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 800;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--navy);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 10px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; letter-spacing: -0.02em;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .section-head p {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--text-muted);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.98rem;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; /* Search &amp; Filter */<br>
-&nbsp;&nbsp;&nbsp; .filter-bar {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flex-direction: column;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 16px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 28px;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .search-box {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; position: relative;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; max-width: 480px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 100%;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin: 0 auto;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .search-box i {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; position: absolute;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; left: 16px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; top: 50%;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transform: translateY(-50%);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--text-muted);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 19px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 19px;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .search-box input {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 100%;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 14px 16px 14px 46px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 14px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: 1.5px solid var(--border);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--surface);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-family: inherit;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.95rem;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; outline: none;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transition: border-color 0.2s;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .search-box input:focus {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-color: var(--navy);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .category-pills {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flex-wrap: wrap;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; justify-content: center;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 8px;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .pill {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 8px 16px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 999px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: 1px solid var(--border);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--surface);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--text-muted);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 600;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.85rem;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cursor: pointer;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transition: all 0.2s;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .pill:hover {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-color: var(--navy);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--navy);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .pill.active {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--navy);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: #FFFFFF;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-color: var(--navy);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; /* Services Grid */<br>
-&nbsp;&nbsp;&nbsp; .services-grid {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: grid;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 20px;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .service-card {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--surface);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: 1px solid var(--border);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: var(--radius);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 22px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; box-shadow: var(--shadow);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flex-direction: column;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transition: all 0.22s ease;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .service-card:hover {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transform: translateY(-4px);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; box-shadow: var(--shadow-hover);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-color: #CBD5E1;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .service-top {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; align-items: center;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 12px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 14px;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .service-num {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.75rem;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 800;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--navy);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--gold);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 26px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 26px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 8px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: grid;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; place-items: center;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flex-shrink: 0;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .service-icon {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 42px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 42px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 12px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: #EFF6FF;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--navy);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: grid;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; place-items: center;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flex-shrink: 0;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .service-card h3 {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 1.04rem;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 700;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--navy);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; line-height: 1.3;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .service-list {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list-style: none;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 18px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flex-grow: 1;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: grid;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 6px;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .service-list li {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.88rem;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--text-muted);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding-left: 16px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; position: relative;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .service-list li::before {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; content: "&#8226;";<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; position: absolute;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; left: 0;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--gold-hover);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 900;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .service-note {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.78rem;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--gold-soft);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: #92400E;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 8px 10px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 8px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 14px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; line-height: 1.4;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .empty-state {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; grid-column: 1 / -1;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; text-align: center;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 40px 20px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--surface);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: var(--radius);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: 1px dashed #CBD5E1;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; /* Steps Section */<br>
-&nbsp;&nbsp;&nbsp; .steps-section {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--surface);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-top: 1px solid var(--border);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-bottom: 1px solid var(--border);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .steps-grid {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: grid;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 20px;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .step-card {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--bg);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: 1px solid var(--border);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: var(--radius);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 24px 20px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; text-align: center;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .step-badge {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 48px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 48px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 14px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--navy);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--gold);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 800;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 1.15rem;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: grid;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; place-items: center;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin: 0 auto 14px;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .step-card h3 {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 1rem;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--navy);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 6px;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .step-card p {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.88rem;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--text-muted);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; /* Why Us &amp; Order Form */<br>
-&nbsp;&nbsp;&nbsp; .split-grid {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: grid;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; grid-template-columns: 1fr;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 28px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; align-items: start;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .why-card, .order-card {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--surface);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: 1px solid var(--border);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 20px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 28px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; box-shadow: var(--shadow);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .why-list {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list-style: none;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: grid;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 14px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-top: 18px;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .why-list li {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; align-items: flex-start;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 12px;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .why-icon {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 34px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 34px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 10px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--gold-soft);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--navy);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: grid;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; place-items: center;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flex-shrink: 0;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .why-list strong {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: block;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.96rem;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--navy);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .why-list span {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.86rem;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--text-muted);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .nego-banner {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-top: 22px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--navy);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: #FFFFFF;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 14px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 18px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; align-items: center;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 14px;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .nego-banner i {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--gold);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flex-shrink: 0;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .nego-banner strong {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--gold);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: block;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.96rem;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .nego-banner p {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.85rem;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: rgba(255, 255, 255, 0.88);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; /* Form */<br>
-&nbsp;&nbsp;&nbsp; .form-group {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 16px;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .form-group label {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: block;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.86rem;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 600;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--navy);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 6px;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .form-control {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 100%;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 12px 14px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: 1.5px solid var(--border);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 12px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-family: inherit;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.94rem;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; outline: none;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--bg);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transition: border-color 0.2s, background 0.2s;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .form-control:focus {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-color: var(--navy);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: #FFFFFF;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; textarea.form-control {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; resize: vertical;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; min-height: 92px;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; /* Footer */<br>
-&nbsp;&nbsp;&nbsp; footer {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--navy-dark);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: rgba(255, 255, 255, 0.82);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 44px 0 28px;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .footer-top {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flex-direction: column;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 20px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; justify-content: space-between;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding-bottom: 24px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-bottom: 1px solid rgba(255, 255, 255, 0.12);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .footer-badges {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flex-wrap: wrap;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 10px;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .footer-badge {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.8rem;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 600;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 6px 12px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 8px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: rgba(255, 255, 255, 0.08);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--gold);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .footer-bottom {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding-top: 20px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flex-wrap: wrap;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; justify-content: space-between;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 12px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.84rem;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: rgba(255, 255, 255, 0.65);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; /* Floating WA */<br>
-&nbsp;&nbsp;&nbsp; .floating-wa {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; position: fixed;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bottom: 22px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; right: 22px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; z-index: 99;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--wa-green);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: #FFFFFF;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 13px 18px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 999px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 700;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.92rem;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; align-items: center;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 8px;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; box-shadow: 0 8px 24px rgba(37, 211, 102, 0.38);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transition: transform 0.2s;<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; .floating-wa:hover {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transform: scale(1.04);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--wa-dark);<br>
-&nbsp;&nbsp;&nbsp; }<br>
-<br>
-&nbsp;&nbsp;&nbsp; @media (min-width: 860px) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .nav-links {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .hero-grid {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; grid-template-columns: 1.25fr 0.9fr;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .split-grid {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; grid-template-columns: 1fr 1fr;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .footer-top {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flex-direction: row;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; align-items: center;<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
-&nbsp;&nbsp;&nbsp; }<br>
-&nbsp; &lt;/style&gt;<br>
-&lt;/head&gt;<br>
-&lt;body&gt;<br>
-<br>
-&nbsp; &lt;!-- Navbar --&gt;<br>
-&nbsp; &lt;header class="navba</div>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="brand">
+        <div class="brand-logo">SK</div>
+        <div>
+          SURUH KITO
+          <span class="sub">Bengkulu • 24 Jam</span>
+        </div>
+      </a>
+      <nav class="nav-links">
+        <a href="#layanan">Layanan</a>
+        <a href="#cara-pesan">Cara Pesan</a>
+        <a href="#keunggulan">Keunggulan</a>
+        <a href="#pesan-cepat">Tanya & Nego</a>
+      </nav>
+      <a href="https://wa.me/6282231981028?text=Halo%20Suruh%20Kito%20Bengkulu%2C%20saya%20mau%20tanya%20layanan." target="_blank" rel="noopener" class="btn btn-gold btn-sm">
+        <i data-lucide="message-circle" style="width:16px;height:16px;"></i>
+        Chat WA
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="badge-pill">
+          <i data-lucide="map-pin" style="width:15px;height:15px;"></i>
+          Melayani Seluruh Wilayah Bengkulu
+        </div>
+        <h1>Ada kerjaan?<br><span>Suruh Kito bae.</span></h1>
+        <p>Butuh bantuan bersih-bersih, pindahan, rakit barang, antar-jemput, hingga bantuan acara? Kalau belum ada di daftar, tanya aja dulu—InsyaAllah kami bantu carikan solusinya!</p>
+        
+        <div class="hero-cta">
+          <a href="#pesan-cepat" class="btn btn-gold">
+            <i data-lucide="send" style="width:18px;height:18px;"></i>
+            Pesan / Tanya Sekarang
+          </a>
+          <a href="#layanan" class="btn btn-outline-white">
+            <i data-lucide="grid" style="width:18px;height:18px;"></i>
+            Lihat 14 Layanan
+          </a>
+        </div>
+
+        <div class="hero-trust">
+          <div class="hero-trust-item"><i data-lucide="clock"></i> WA Aktif 24 Jam</div>
+          <div class="hero-trust-item"><i data-lucide="handshake"></i> Bisa Nego Harga</div>
+          <div class="hero-trust-item"><i data-lucide="shield-check"></i> Amanah & Responsif</div>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-card-title">
+          <i data-lucide="sparkles"></i>
+          Siap Bantu Berbagai Kebutuhan
+        </div>
+        <ul class="quick-list">
+          <li><i data-lucide="check-circle-2"></i><span><strong>Individu & Rumah Tangga:</strong> Bersih rumah, kuras tandon, halaman, hingga pindahan.</span></li>
+          <li><i data-lucide="check-circle-2"></i><span><strong>Kos & Kontrakan:</strong> Paket bersih kos, cuci piring, hingga ganti pasir kucing.</span></li>
+          <li><i data-lucide="check-circle-2"></i><span><strong>Toko, Kantor & UMKM:</strong> Beres gudang, pasang banner, loading/unloading, ambil stok.</span></li>
+          <li><i data-lucide="check-circle-2"></i><span><strong>Acara & Pendampingan:</strong> Setting lokasi, pengisi acara, sopir, hingga teman cerita.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="layanan">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">Daftar Layanan</span>
+        <h2>14 Kategori Layanan Suruh Kito</h2>
+        <p>Pilih layanan yang kamu butuhkan, atau gunakan kotak pencarian di bawah untuk menemukan jasa spesifik.</p>
+      </div>
+
+      <div class="filter-bar">
+        <div class="search-box">
+          <i data-lucide="search"></i>
+          <input type="text" id="searchInput" placeholder="Cari layanan... (misal: tandon, pindahan, kucing, sopir, MC)" />
+        </div>
+        <div class="category-pills" id="categoryPills">
+          <button class="pill active" data-cat="all">Semua (14)</button>
+          <button class="pill" data-cat="rumah">Rumah & Kebersihan</button>
+          <button class="pill" data-cat="angkut">Angkut & Transport</button>
+          <button class="pill" data-cat="umkm">UMKM & Acara</button>
+          <button class="pill" data-cat="personal">Personal & Khusus</button>
+        </div>
+      </div>
+
+      <div class="services-grid" id="servicesGrid"></div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="cara-pesan" class="steps-section">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">Alur Pemesanan</span>
+        <h2>Gimana Caranya?</h2>
+        <p>Proses cepat, komunikasi santai, gak pake lama.</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-badge">1</div>
+          <h3>Chat Kebutuhanmu</h3>
+          <p>Ceritakan pekerjaan atau bantuan yang kamu butuhkan lewat WhatsApp kami.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-badge">2</div>
+          <h3>Cek & Penawaran</h3>
+          <p>Kami cek detail lokasi/pekerjaan dan langsung kasih info serta estimasi harga.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-badge">3</div>
+          <h3>Deal? Gasken!</h3>
+          <p>Harga cocok (bisa nego!), tim muda & energik kami langsung meluncur kerjakan.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-badge">4</div>
+          <h3>Beres & Puas</h3>
+          <p>Kerjaan selesai dengan rapi. Kamu puas, kami juga senang!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Us & Quick Order Form -->
+  <section id="keunggulan">
+    <div class="container split-grid">
+      <!-- Why Us -->
+      <div class="why-card">
+        <span class="section-tag">Keunggulan Kami</span>
+        <h2 style="color:var(--navy); font-size:1.65rem; font-weight:800; margin-bottom:6px;">Kenapa Nyaman Pakai Suruh Kito?</h2>
+        <p style="color:var(--text-muted); font-size:0.93rem;">Apa pun urusanmu, kami siap bantu dengan pelayanan ramah dan fleksibel.</p>
+
+        <ul class="why-list">
+          <li>
+            <div class="why-icon"><i data-lucide="zap" style="width:18px;height:18px;"></i></div>
+            <div>
+              <strong>Tim Muda & Energik</strong>
+              <span>Sigap, cekatan, dan siap turun langsung ke lokasi di seluruh Bengkulu.</span>
+            </div>
+          </li>
+          <li>
+            <div class="why-icon"><i data-lucide="message-square" style="width:18px;height:18px;"></i></div>
+            <div>
+              <strong>Komunikasi Santai, Fast Response</strong>
+              <span>WhatsApp aktif 24 jam, balas cepat tanpa ribet.</span>
+            </div>
+          </li>
+          <li>
+            <div class="why-icon"><i data-lucide="wallet" style="width:18px;height:18px;"></i></div>
+            <div>
+              <strong>Bisa Nego Harga</strong>
+              <span>Budget-mu kami hargai. Kita cari jalan tengah yang enak buat kamu & kami.</span>
+            </div>
+          </li>
+          <li>
+            <div class="why-icon"><i data-lucide="sliders" style="width:18px;height:18px;"></i></div>
+            <div>
+              <strong>Fleksibel & Menyesuaikan Kebutuhan</strong>
+              <span>Butuh layanan di luar daftar? Tanya aja dulu, kita usahakan solusinya.</span>
+            </div>
+          </li>
+          <li>
+            <div class="why-icon"><i data-lucide="shield-check" style="width:18px;height:18px;"></i></div>
+            <div>
+              <strong>Amanah & Bertanggung Jawab</strong>
+              <span>Dikerjakan dengan teliti, aman, dan bisa dipercaya.</span>
+            </div>
+          </li>
+        </ul>
+
+        <div class="nego-banner">
+          <i data-lucide="badge-percent" style="width:32px;height:32px;"></i>
+          <div>
+            <strong>Mau Nego Harga? Boleh Banget!</strong>
+            <p>Langsung chat dan ceritakan kebutuhan serta budget-mu ke WhatsApp 0822 3198 1028.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Order Form -->
+      <div class="order-card" id="pesan-cepat">
+        <span class="section-tag">Pesan / Tanya Cepat</span>
+        <h2 style="color:var(--navy); font-size:1.65rem; font-weight:800; margin-bottom:6px;">Ceritakan Kebutuhanmu</h2>
+        <p style="color:var(--text-muted); font-size:0.93rem; margin-bottom:20px;">Isi form singkat ini untuk langsung terhubung ke WhatsApp admin dengan format pesan rapi.</p>
+
+        <form id="waForm">
+          <div class="form-group">
+            <label for="nama">Nama Kamu</label>
+            <input type="text" id="nama" class="form-control" placeholder="Contoh: Budi" required />
+          </div>
+
+          <div class="form-group">
+            <label for="lokasi">Lokasi / Area di Bengkulu</label>
+            <input type="text" id="lokasi" class="form-control" placeholder="Contoh: Jl. S. Parman / Lingkar Barat" required />
+          </div>
+
+          <div class="form-group">
+            <label for="kategori">Pilih Layanan</label>
+            <select id="kategori" class="form-control">
+              <option value="Kebutuhan Lainnya (Custom)">Kebutuhan Lainnya / Tanya Dulu</option>
+              <option value="1. Pasang, Rakit & Perbaikan">1. Pasang, Rakit & Perbaikan</option>
+              <option value="2. Bersih-Bersih">2. Bersih-Bersih</option>
+              <option value="3. Halaman & Kebun Ringan">3. Halaman & Kebun Ringan</option>
+              <option value="4. Air, Sumur & Sanitasi">4. Air, Sumur & Sanitasi</option>
+              <option value="5. Angkut, Pindahan & Bongkar-Muat">5. Angkut, Pindahan & Bongkar-Muat</option>
+              <option value="6. Jaga Kos & Kontrakan">6. Jaga Kos & Kontrakan</option>
+              <option value="7. Transportasi & Sopir">7. Transportasi & Sopir</option>
+              <option value="8. Packing & Ekspedisi">8. Packing & Ekspedisi</option>
+              <option value="9. Hewan & Bangkai">9. Hewan & Bangkai</option>
+              <option value="10. Personal Care - Home Service">10. Personal Care - Home Service</option>
+              <option value="11. Jasa Untuk Toko & UMKM">11. Jasa Untuk Toko & UMKM</option>
+              <option value="12. Bantuan Acara">12. Bantuan Acara</option>
+              <option value="13. Pengisi Acara & Narasumber">13. Pengisi Acara & Narasumber</option>
+              <option value="14. Teman & Pendamping">14. Teman & Pendamping</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="detail">Detail Pekerjaan & Estimasi Budget (Opsional)</label>
+            <textarea id="detail" class="form-control" placeholder="Jelaskan singkat pekerjaan yang dibutuhkan, jadwal, atau budget yang diinginkan..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-wa" style="width:100%; padding:14px;">
+            <i data-lucide="message-circle" style="width:19px;height:19px;"></i>
+            Kirim ke WhatsApp (0822 3198 1028)
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="brand" style="color:#FFFFFF; margin-bottom:8px;">
+            <div class="brand-logo" style="background:var(--gold); color:var(--navy-dark);">SK</div>
+            <div>
+              SURUH KITO BENGKULU
+              <span class="sub" style="color:rgba(255,255,255,0.7);">"Ada kerjaan? Suruh Kito bae."</span>
+            </div>
+          </div>
+          <p style="font-size:0.88rem; max-width:460px;">Melayani individu, rumah tangga, kantor, toko, kos, kontrakan, acara, dan lainnya di seluruh Bengkulu.</p>
+        </div>
+
+        <div class="footer-badges">
+          <span class="footer-badge">Aman & Terpercaya</span>
+          <span class="footer-badge">Cepat & Responsif</span>
+          <span class="footer-badge">Harga Bersahabat</span>
+          <span class="footer-badge">Layanan Lengkap</span>
+          <span class="footer-badge">Aktif 24 Jam</span>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 Suruh Kito Bengkulu. All rights reserved.</span>
+        <span>WhatsApp: <strong>0822 3198 1028</strong></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/6282231981028?text=Halo%20Suruh%20Kito%20Bengkulu%2C%20saya%20butuh%20bantuan%20jasa." target="_blank" rel="noopener" class="floating-wa" aria-label="Chat WhatsApp Suruh Kito">
+    <i data-lucide="message-circle" style="width:20px;height:20px;"></i>
+    Chat 24 Jam
+  </a>
+
+  <script>
+    const WA_NUMBER = "6282231981028";
+
+    const services = [
+      {
+        id: 1,
+        title: "Pasang, Rakit & Perbaikan",
+        cat: "rumah",
+        icon: "wrench",
+        items: [
+          "Pasang & bongkar berbagai kebutuhan",
+          "Perbaikan ringan",
+          "Rakit furniture & instalasi lainnya"
+        ]
+      },
+      {
+        id: 2,
+        title: "Bersih-Bersih",
+        cat: "rumah",
+        icon: "sparkles",
+        items: [
+          "Rumah, kos, kontrakan",
+          "Kamar, kamar mandi, dapur",
+          "Cuci piring",
+          "Kulkas, kaca, kipas, kompor, dll"
+        ]
+      },
+      {
+        id: 3,
+        title: "Halaman & Kebun Ringan",
+        cat: "rumah",
+        icon: "trees",
+        items: [
+          "Sapu halaman & cabut rumput",
+          "Pangkas tanaman",
+          "Bersihkan selokan",
+          "Angkut & buang sampah halaman"
+        ]
+      },
+      {
+        id: 4,
+        title: "Air, Sumur & Sanitasi",
+        cat: "rumah",
+        icon: "droplets",
+        items: [
+          "Kuras tandon / sumur",
+          "Bersihkan tandon, sumur, bak",
+          "Bersihkan saluran air & kamar mandi"
+        ]
+      },
+      {
+        id: 5,
+        title: "Angkut, Pindahan & Bongkar-Muat",
+        cat: "angkut",
+        icon: "truck",
+        items: [
+          "Pindahan rumah, kos, kantor",
+          "Bongkar-muat barang",
+          "Angkut & pindah furniture",
+          "Buang barang bekas"
+        ]
+      },
+      {
+        id: 6,
+        title: "Jaga Kos & Kontrakan",
+        cat: "rumah",
+        icon: "home",
+        items: [
+          "Paket bersih kos",
+          "Bersih kamar & kamar mandi",
+          "Cuci piring & ganti pasir kucing",
+          "Buang barang bekas"
+        ]
+      },
+      {
+        id: 7,
+        title: "Transportasi & Sopir",
+        cat: "angkut",
+        icon: "car",
+        items: [
+          "Sopir harian & panggilan",
+          "Antar-jemput & antar wisatawan",
+          "Antar barang & ekspedisi",
+          "City tour Bengkulu"
+        ]
+      },
+      {
+        id: 8,
+        title: "Packing & Ekspedisi",
+        cat: "angkut",
+        icon: "package",
+        items: [
+          "Packing barang, furniture, elektronik",
+          "Packing pecah belah",
+          "Bubble wrap & kardus",
+          "Antar ke ekspedisi"
+        ]
+      },
+      {
+        id: 9,
+        title: "Hewan & Bangkai",
+        cat: "personal",
+        icon: "paw-print",
+        items: [
+          "Bersihkan litter box & ganti pasir kucing",
+          "Bersihkan kandang",
+          "Antar kebutuhan hewan",
+          "Evakuasi & penguburan bangkai hewan"
+        ]
+      },
+      {
+        id: 10,
+        title: "Personal Care - Home Service",
+        cat: "personal",
+        icon: "scissors",
+        items: [
+          "Potong rambut panggilan & cukur rambut",
+          "Cukur jenggot",
+          "Potong rambut anak",
+          "Perawatan ringan di rumah"
+        ]
+      },
+      {
+        id: 11,
+        title: "Jasa Untuk Toko & UMKM",
+        cat: "umkm",
+        icon: "store",
+        items: [
+          "Bersihkan toko / gudang & beres-beres toko",
+          "Rak display & penataan",
+          "Pasang banner / papan nama",
+          "Loading/unloading, ambil stok & antar barang"
+        ]
+      },
+      {
+        id: 12,
+        title: "Bantuan Acara",
+        cat: "umkm",
+        icon: "calendar-check",
+        items: [
+          "Angkut perlengkapan",
+          "Setting lokasi & pasang meja/kursi",
+          "Persiapan tempat",
+          "Beres setelah acara"
+        ]
+      },
+      {
+        id: 13,
+        title: "Pengisi Acara & Narasumber",
+        cat: "umkm",
+        icon: "mic",
+        items: [
+          "Mencarikan/menjembatani: Penceramah/ustaz, Qari/qariah, Pendeta",
+          "MC & Pembaca doa",
+          "Narasumber, Pembicara & pengisi acara lainnya"
+        ]
+      },
+      {
+        id: 14,
+        title: "Teman & Pendamping",
+        cat: "personal",
+        icon: "users",
+        items: [
+          "Dengerin curhatan* & teman ngobrol",
+          "Teman ngopi, makan, jalan, nonton",
+          "Teman menunggu",
+          "Pendamping acara / city tour"
+        ],
+        note: "*Dengerin curhatan: posisi sebagai teman cerita, bukan konseling/terapi profesional."
+      }
+    ];
+
+    const grid = document.getElementById("servicesGrid");
+    const searchInput = document.getElementById("searchInput");
+    const pills = document.querySelectorAll(".pill");
+    let activeCat = "all";
+
+    function renderServices() {
+      const q = searchInput.value.trim().toLowerCase();
+      const filtered = services.filter(s => {
+        const matchCat = activeCat === "all" || s.cat === activeCat;
+        const matchText =
+          s.title.toLowerCase().includes(q) ||
+          s.items.some(item => item.toLowerCase().includes(q));
+        return matchCat && matchText;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-state">
+            <h3 style="color:var(--navy); margin-bottom:8px;">Layanan belum ketemu di daftar?</h3>
+            <p style="color:var(--text-muted); margin-bottom:16px; font-size:0.92rem;">Jangan ragu tanya ke kami! Kebutuhan tiap orang beda-beda, InsyaAllah kami bantu carikan solusinya.</p>
+            <a href="https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Halo Suruh Kito Bengkulu, saya mau tanya apakah bisa bantu untuk: " + searchInput.value)}" target="_blank" rel="noopener" class="btn btn-gold btn-sm">
+              Tanya Langsung via WhatsApp
+            </a>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(s => {
+        const waMsg = encodeURIComponent(`Halo Suruh Kito Bengkulu, saya tertarik dengan layanan *${s.id}. ${s.title}*. Boleh tanya info dan estimasi harganya?`);
+        return `
+          <article class="service-card">
+            <div class="service-top">
+              <div class="service-icon"><i data-lucide="${s.icon}" style="width:20px;height:20px;"></i></div>
+              <div>
+                <div style="display:flex; align-items:center; gap:6px; margin-bottom:2px;">
+                  <span class="service-num">${s.id}</span>
+                  <h3>${s.title}</h3>
+                </div>
+              </div>
+            </div>
+            <ul class="service-list">
+              ${s.items.map(i => `<li>${i}</li>`).join("")}
+            </ul>
+            ${s.note ? `<div class="service-note">${s.note}</div>` : ""}
+            <a href="https://wa.me/${WA_NUMBER}?text=${waMsg}" target="_blank" rel="noopener" class="btn btn-navy btn-sm" style="width:100%;">
+              <i data-lucide="message-circle" style="width:15px;height:15px;"></i>
+              Pesan Layanan Ini
+            </a>
+          </article>
+        `;
+      }).join("");
+
+      lucide.createIcons();
+    }
+
+    pills.forEach(btn => {
+      btn.addEventListener("click", () => {
+        pills.forEach(p => p.classList.remove("active"));
+        btn.classList.add("active");
+        activeCat = btn.dataset.cat;
+        renderServices();
+      });
+    });
+
+    searchInput.addEventListener("input", renderServices);
+
+    // Form submit to WhatsApp
+    document.getElementById("waForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const nama = document.getElementById("nama").value.trim();
+      const lokasi = document.getElementById("lokasi").value.trim();
+      const kategori = document.getElementById("kategori").value;
+      const detail = document.getElementById("detail").value.trim();
+
+      const text =
+        `Halo *Suruh Kito Bengkulu* 👋\n` +
+        `Saya mau tanya/pesan layanan:\n\n` +
+        `• *Nama:* ${nama}\n` +
+        `• *Lokasi:* ${lokasi}\n` +
+        `• *Layanan:* ${kategori}\n` +
+        `• *Detail / Budget:* ${detail}`;
+
+      window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`, "_blank");
+    });
+
+    // Initial render
+    renderServices();
+    lucide.createIcons();
+  </script>
 </body>
 </html>
