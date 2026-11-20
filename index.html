@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>notepad</title>
+</head>
+<style type="text/css">
+ol,ul{
+display:block;
+list-style-type:none;
+margin:3px;
+}
+</style><body>
+<div>&lt;!DOCTYPE html&gt;<br>
+&lt;html lang="id"&gt;<br>
+&lt;head&gt;<br>
+&nbsp; &lt;meta charset="UTF-8" /&gt;<br>
+&nbsp; &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;<br>
+&nbsp; &lt;title&gt;Suruh Kito Bengkulu &#8212; Ada Kerjaan? Suruh Kito Bae&lt;/title&gt;<br>
+&nbsp; &lt;meta name="description" content="Layanan serba bisa di seluruh Bengkulu: bersih-bersih, pindahan, pasang &amp; rakit, sopir, bantuan acara, hingga teman pendamping. WA aktif 24 jam &amp; bisa nego harga." /&gt;<br>
+&nbsp; <br>
+&nbsp; &lt;!-- Google Fonts: Inter --&gt;<br>
+&nbsp; &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;<br>
+&nbsp; &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;<br>
+&nbsp; &lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"&gt;<br>
+&nbsp; <br>
+&nbsp; &lt;!-- Lucide Icons --&gt;<br>
+&nbsp; &lt;script src="https://unpkg.com/lucide@latest"&gt;&lt;/script&gt;<br>
+<br>
+&nbsp; &lt;style&gt;<br>
+&nbsp;&nbsp;&nbsp; :root {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --navy: #0B2B64;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --navy-dark: #071D46;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --navy-light: #15408D;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --gold: #FBC02D;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --gold-hover: #F5A623;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --gold-soft: #FFF8E1;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --bg: #F8FAFC;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --surface: #FFFFFF;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --text-main: #0F172A;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --text-muted: #475569;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --border: #E2E8F0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --wa-green: #25D366;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --wa-dark: #1DA851;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --radius: 16px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --shadow: 0 4px 20px rgba(11, 43, 100, 0.06);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --shadow-hover: 0 12px 28px rgba(11, 43, 100, 0.12);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; * {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; box-sizing: border-box;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin: 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 0;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; html {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; scroll-behavior: smooth;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; body {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background-color: var(--bg);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--text-main);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; line-height: 1.6;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -webkit-font-smoothing: antialiased;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; a {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; text-decoration: none;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: inherit;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .container {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 100%;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; max-width: 1160px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin: 0 auto;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 0 20px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; /* Navbar */<br>
+&nbsp;&nbsp;&nbsp; .navbar {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; position: sticky;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; top: 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; z-index: 100;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: rgba(255, 255, 255, 0.94);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; backdrop-filter: blur(10px);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-bottom: 1px solid var(--border);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .nav-inner {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; align-items: center;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; justify-content: space-between;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 70px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .brand {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; align-items: center;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 10px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 800;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 1.15rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--navy);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .brand-logo {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--navy);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--gold);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 800;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 1.1rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 40px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 40px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 10px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: grid;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; place-items: center;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; letter-spacing: -1px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .brand span.sub {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: block;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.72rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 500;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--text-muted);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; line-height: 1;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .nav-links {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: none;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 28px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 600;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.92rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--text-muted);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .nav-links a:hover {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--navy);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .btn {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: inline-flex;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; align-items: center;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; justify-content: center;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 8px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 12px 20px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 12px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 700;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.95rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cursor: pointer;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: none;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transition: all 0.2s ease;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .btn-gold {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--gold);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--navy-dark);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .btn-gold:hover {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--gold-hover);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transform: translateY(-1px);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .btn-navy {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--navy);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: #FFFFFF;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .btn-navy:hover {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--navy-light);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transform: translateY(-1px);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .btn-outline-white {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: rgba(255, 255, 255, 0.1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: #FFFFFF;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: 1px solid rgba(255, 255, 255, 0.28);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .btn-outline-white:hover {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: rgba(255, 255, 255, 0.18);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .btn-wa {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--wa-green);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: #FFFFFF;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .btn-wa:hover {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--wa-dark);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transform: translateY(-1px);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .btn-sm {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 9px 14px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.85rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 10px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; /* Hero */<br>
+&nbsp;&nbsp;&nbsp; .hero {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, var(--navy-light) 100%);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: #FFFFFF;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 64px 0 76px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; position: relative;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; overflow: hidden;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .hero::after {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; content: "";<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; position: absolute;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 420px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 420px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: radial-gradient(circle, rgba(251, 192, 45, 0.16) 0%, rgba(251, 192, 45, 0) 70%);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; top: -120px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; right: -80px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pointer-events: none;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .hero-grid {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: grid;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; grid-template-columns: 1fr;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 36px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; align-items: center;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; position: relative;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; z-index: 2;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .badge-pill {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: inline-flex;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; align-items: center;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 8px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: rgba(251, 192, 45, 0.15);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--gold);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: 1px solid rgba(251, 192, 45, 0.35);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 6px 14px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 999px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.82rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 700;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 18px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .hero h1 {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: clamp(2rem, 5vw, 3.1rem);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 800;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; line-height: 1.15;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 16px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; letter-spacing: -0.02em;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .hero h1 span {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--gold);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .hero p {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 1.05rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: rgba(255, 255, 255, 0.86);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; max-width: 580px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 28px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .hero-cta {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flex-wrap: wrap;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 12px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 28px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .hero-trust {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flex-wrap: wrap;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 18px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.86rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: rgba(255, 255, 255, 0.85);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .hero-trust-item {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; align-items: center;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 6px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .hero-trust-item i {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--gold);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 17px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 17px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .hero-card {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: rgba(255, 255, 255, 0.08);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: 1px solid rgba(255, 255, 255, 0.16);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; backdrop-filter: blur(10px);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 20px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 24px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .hero-card-title {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 700;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 1.05rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--gold);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 12px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; align-items: center;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 8px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .quick-list {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list-style: none;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: grid;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 10px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.92rem;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .quick-list li {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; align-items: flex-start;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 10px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: rgba(255, 255, 255, 0.92);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .quick-list i {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--gold);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flex-shrink: 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-top: 2px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 18px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 18px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; /* Section Header */<br>
+&nbsp;&nbsp;&nbsp; section {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 68px 0;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .section-head {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; text-align: center;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; max-width: 680px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin: 0 auto 36px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .section-tag {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: inline-block;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--navy);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--gold-soft);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: 1px solid #FDE68A;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.78rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 700;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; text-transform: uppercase;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; letter-spacing: 0.06em;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 5px 12px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 999px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 10px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .section-head h2 {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: clamp(1.6rem, 3.5vw, 2.25rem);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 800;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--navy);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 10px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; letter-spacing: -0.02em;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .section-head p {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--text-muted);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.98rem;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; /* Search &amp; Filter */<br>
+&nbsp;&nbsp;&nbsp; .filter-bar {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flex-direction: column;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 16px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 28px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .search-box {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; position: relative;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; max-width: 480px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 100%;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin: 0 auto;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .search-box i {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; position: absolute;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; left: 16px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; top: 50%;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transform: translateY(-50%);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--text-muted);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 19px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 19px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .search-box input {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 100%;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 14px 16px 14px 46px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 14px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: 1.5px solid var(--border);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--surface);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-family: inherit;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.95rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; outline: none;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transition: border-color 0.2s;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .search-box input:focus {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-color: var(--navy);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .category-pills {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flex-wrap: wrap;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; justify-content: center;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 8px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .pill {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 8px 16px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 999px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: 1px solid var(--border);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--surface);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--text-muted);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 600;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.85rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cursor: pointer;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transition: all 0.2s;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .pill:hover {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-color: var(--navy);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--navy);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .pill.active {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--navy);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: #FFFFFF;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-color: var(--navy);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; /* Services Grid */<br>
+&nbsp;&nbsp;&nbsp; .services-grid {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: grid;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 20px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .service-card {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--surface);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: 1px solid var(--border);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: var(--radius);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 22px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; box-shadow: var(--shadow);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flex-direction: column;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transition: all 0.22s ease;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .service-card:hover {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transform: translateY(-4px);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; box-shadow: var(--shadow-hover);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-color: #CBD5E1;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .service-top {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; align-items: center;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 12px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 14px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .service-num {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.75rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 800;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--navy);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--gold);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 26px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 26px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 8px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: grid;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; place-items: center;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flex-shrink: 0;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .service-icon {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 42px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 42px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 12px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: #EFF6FF;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--navy);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: grid;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; place-items: center;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flex-shrink: 0;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .service-card h3 {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 1.04rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 700;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--navy);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; line-height: 1.3;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .service-list {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list-style: none;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 18px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flex-grow: 1;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: grid;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 6px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .service-list li {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.88rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--text-muted);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding-left: 16px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; position: relative;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .service-list li::before {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; content: "&#8226;";<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; position: absolute;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; left: 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--gold-hover);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 900;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .service-note {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.78rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--gold-soft);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: #92400E;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 8px 10px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 8px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 14px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; line-height: 1.4;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .empty-state {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; grid-column: 1 / -1;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; text-align: center;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 40px 20px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--surface);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: var(--radius);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: 1px dashed #CBD5E1;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; /* Steps Section */<br>
+&nbsp;&nbsp;&nbsp; .steps-section {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--surface);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-top: 1px solid var(--border);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-bottom: 1px solid var(--border);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .steps-grid {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: grid;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 20px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .step-card {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--bg);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: 1px solid var(--border);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: var(--radius);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 24px 20px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; text-align: center;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .step-badge {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 48px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 48px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 14px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--navy);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--gold);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 800;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 1.15rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: grid;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; place-items: center;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin: 0 auto 14px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .step-card h3 {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 1rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--navy);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 6px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .step-card p {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.88rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--text-muted);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; /* Why Us &amp; Order Form */<br>
+&nbsp;&nbsp;&nbsp; .split-grid {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: grid;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; grid-template-columns: 1fr;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 28px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; align-items: start;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .why-card, .order-card {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--surface);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: 1px solid var(--border);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 20px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 28px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; box-shadow: var(--shadow);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .why-list {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; list-style: none;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: grid;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 14px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-top: 18px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .why-list li {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; align-items: flex-start;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 12px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .why-icon {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 34px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 34px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 10px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--gold-soft);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--navy);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: grid;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; place-items: center;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flex-shrink: 0;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .why-list strong {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: block;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.96rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--navy);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .why-list span {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.86rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--text-muted);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .nego-banner {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-top: 22px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--navy);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: #FFFFFF;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 14px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 18px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; align-items: center;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 14px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .nego-banner i {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--gold);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flex-shrink: 0;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .nego-banner strong {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--gold);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: block;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.96rem;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .nego-banner p {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.85rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: rgba(255, 255, 255, 0.88);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; /* Form */<br>
+&nbsp;&nbsp;&nbsp; .form-group {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 16px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .form-group label {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: block;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.86rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 600;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--navy);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 6px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .form-control {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 100%;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 12px 14px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: 1.5px solid var(--border);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 12px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-family: inherit;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.94rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; outline: none;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--bg);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transition: border-color 0.2s, background 0.2s;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .form-control:focus {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-color: var(--navy);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: #FFFFFF;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; textarea.form-control {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; resize: vertical;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; min-height: 92px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; /* Footer */<br>
+&nbsp;&nbsp;&nbsp; footer {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--navy-dark);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: rgba(255, 255, 255, 0.82);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 44px 0 28px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .footer-top {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flex-direction: column;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 20px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; justify-content: space-between;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding-bottom: 24px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-bottom: 1px solid rgba(255, 255, 255, 0.12);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .footer-badges {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flex-wrap: wrap;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 10px;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .footer-badge {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.8rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 600;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 6px 12px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 8px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: rgba(255, 255, 255, 0.08);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: var(--gold);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .footer-bottom {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding-top: 20px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flex-wrap: wrap;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; justify-content: space-between;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 12px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.84rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: rgba(255, 255, 255, 0.65);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; /* Floating WA */<br>
+&nbsp;&nbsp;&nbsp; .floating-wa {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; position: fixed;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bottom: 22px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; right: 22px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; z-index: 99;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--wa-green);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color: #FFFFFF;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; padding: 13px 18px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 999px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: 700;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 0.92rem;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; align-items: center;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gap: 8px;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; box-shadow: 0 8px 24px rgba(37, 211, 102, 0.38);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transition: transform 0.2s;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; .floating-wa:hover {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transform: scale(1.04);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background: var(--wa-dark);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp; @media (min-width: 860px) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .nav-links {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; display: flex;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .hero-grid {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; grid-template-columns: 1.25fr 0.9fr;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .split-grid {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; grid-template-columns: 1fr 1fr;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .footer-top {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flex-direction: row;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; align-items: center;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp; &lt;/style&gt;<br>
+&lt;/head&gt;<br>
+&lt;body&gt;<br>
+<br>
+&nbsp; &lt;!-- Navbar --&gt;<br>
+&nbsp; &lt;header class="navba</div>
+</body>
+</html>
